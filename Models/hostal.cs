@@ -11,7 +11,8 @@ namespace MyAppOfHotal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class hostal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,16 @@ namespace MyAppOfHotal.Models
         }
     
         public int id { get; set; }
+        [Display(Name = "Hostal")]
         public string title_hostal { get; set; }
         public Nullable<int> beds { get; set; }
+        [Display(Name = "Max people")]
         public Nullable<int> for_how { get; set; }
+        [Display(Name = "Num Room")]
         public Nullable<int> rooms { get; set; }
+        [Display(Name = "Class")]
         public Nullable<int> id_class { get; set; }
+        [Display(Name = "State")]
         public Nullable<int> id_state { get; set; }
         public Nullable<int> cr_user { get; set; }
         public Nullable<System.DateTime> cr_date { get; set; }

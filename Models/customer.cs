@@ -11,7 +11,8 @@ namespace MyAppOfHotal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +22,19 @@ namespace MyAppOfHotal.Models
         }
     
         public int id { get; set; }
+        [Display(Name = "Full Name")]
         public string name { get; set; }
+
+        [Display(Name = "number Phone")] 
         public string phone { get; set; }
         public int gender { get; set; }
+        [Display(Name = "Type Of Document")]
         public Nullable<int> type_doc { get; set; }
         public Nullable<int> nationalty { get; set; }
+        [Display(Name = "Serial num Of Document")]
         public string serial_number { get; set; }
         public Nullable<int> cr_user { get; set; }
+        [Display(Name = "Created Date")]
         public Nullable<System.DateTime> cr_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

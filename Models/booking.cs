@@ -17,13 +17,21 @@ namespace MyAppOfHotal.Models
     public partial class booking
     {
         public int id { get; set; }
+        [Display(Name = "Full Name")]
         public int ssn_cust { get; set; }
+
+        [Display(Name = "Hostal")]
         public int id_hostal { get; set; }
+
+        [Display(Name = "Booking Date & Time")]
         [BindProperty, DataType(DataType.DateTime)]
         public Nullable<System.DateTime> booking_date { get; set; }
+
+        [Display(Name = "check In")]
         [BindProperty, DataType(DataType.Date)]
         public Nullable<System.DateTime> check_in { get; set; }
         [BindProperty, DataType(DataType.Date)]
+        [Display(Name = "check out")]
         public Nullable<System.DateTime> check_out { get; set; }
         public Nullable<int> state_booking { get; set; }
         public Nullable<int> cr_user { get; set; }
