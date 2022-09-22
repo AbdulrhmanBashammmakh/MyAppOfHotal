@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MyAppOfHotal.Models.hostal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الغرف المتواجده في الفندق</h2>
+
+<p>
+    @Html.ActionLink("أضافة غرفة جديدة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            
+            <p> تفاصيل الغرفه</p>
+</th>
+        <th>
+            <p>عدد السراير</p>
+</th>
+        <th>
+            <p>  عدد  النزلاء الاقصى</p>
+</th>
+        <th>
+            <p>رقم الغرفة المميز</p>
+</th>
+
+        <th>
+            <p> حالة الغرفة</p>
+</th>
+        <th>
+            <p>  تصنيف الغرفة</p>
+</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title_hostal) /     @Html.DisplayFor(modelItem => item.rooms)/    @Html.DisplayFor(modelItem => item.Types_hostal.types)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.beds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.for_how)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rooms)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.hostal_state.state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Types_hostal.types)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

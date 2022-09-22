@@ -1,0 +1,82 @@
+﻿@model MyAppOfHotal.Models.customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serial_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serial_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender1.gend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender1.gend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalty1.name_of_nation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationalty1.name_of_nation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type_documant.doc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type_documant.doc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

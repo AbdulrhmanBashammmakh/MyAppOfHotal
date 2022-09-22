@@ -1,0 +1,97 @@
+﻿@model MyAppOfHotal.Models.customer
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>customer</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-auto">
+            <div class="form-group">
+                @Html.LabelFor(model => model.gender, "gender", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("gender", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-group">
+                @Html.LabelFor(model => model.type_doc, "type_doc", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("type_doc", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.type_doc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-group">
+                @Html.LabelFor(model => model.nationalty, "nationalty", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("nationalty", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.nationalty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+   
+
+   
+
+  
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.serial_number, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.serial_number, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.serial_number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

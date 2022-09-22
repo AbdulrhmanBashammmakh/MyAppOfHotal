@@ -1,0 +1,88 @@
+﻿@model MyAppOfHotal.Models.booking
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booking_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.check_in)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_in)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.check_out)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_out)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.checking.check_rooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checking.check_rooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hostal.title_hostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hostal.title_hostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state_booking1.state_booking1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state_booking1.state_booking1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

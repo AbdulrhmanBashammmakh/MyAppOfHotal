@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="al_hotalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ssn_cust" Type="int" Nullable="false" />
+          <Property Name="id_hostal" Type="int" Nullable="false" />
+          <Property Name="booking_date" Type="datetime" />
+          <Property Name="check_in" Type="datetime" />
+          <Property Name="check_out" Type="datetime" />
+          <Property Name="state_booking" Type="int" />
+          <Property Name="cr_user" Type="int" />
+          <Property Name="is_checking" Type="int" />
+        </EntityType>
+        <EntityType Name="checking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="check_rooms" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="int" Nullable="false" />
+          <Property Name="type_doc" Type="int" />
+          <Property Name="nationalty" Type="int" />
+          <Property Name="serial_number" Type="varchar(max)" />
+          <Property Name="cr_user" Type="int" />
+          <Property Name="cr_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="days_booking">
+          <Key>
+            <PropertyRef Name="id_booking" />
+          </Key>
+          <Property Name="id_booking" Type="int" Nullable="false" />
+          <Property Name="amount_days" Type="int" Nullable="false" />
+          <Property Name="spend_days" Type="int" Nullable="false" />
+          <Property Name="rest_days" Type="int" Nullable="false" />
+          <Property Name="upd_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="gend" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hostal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title_hostal" Type="nvarchar" MaxLength="50" />
+          <Property Name="beds" Type="int" />
+          <Property Name="for_how" Type="int" />
+          <Property Name="rooms" Type="int" />
+          <Property Name="id_class" Type="int" />
+          <Property Name="id_state" Type="int" />
+          <Property Name="cr_user" Type="int" />
+          <Property Name="cr_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="hostal_state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nationalty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_of_nation" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bookings" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="payment" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="nets" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="state_booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="state_booking" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="type_documant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doc" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types_hostal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="types" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="cr_user" Type="int" Nullable="false" />
+          <Property Name="cr_date" Type="datetime" Nullable="false" />
+          <Property Name="upd_user" Type="int" />
+          <Property Name="upd_date" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_booking_checking">
+          <End Role="checking" Type="Self.checking" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="is_checking" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="ssn_cust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_hostal">
+          <End Role="hostal" Type="Self.hostal" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hostal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="id_hostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_state_booking">
+          <End Role="state_booking" Type="Self.state_booking" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_booking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="state_booking" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_gender">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_Nationalty">
+          <End Role="Nationalty" Type="Self.Nationalty" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationalty">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="nationalty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_type_documant">
+          <End Role="type_documant" Type="Self.type_documant" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_documant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="type_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hostal_hostal_state">
+          <End Role="hostal_state" Type="Self.hostal_state" Multiplicity="0..1" />
+          <End Role="hostal" Type="Self.hostal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hostal_state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hostal">
+              <PropertyRef Name="id_state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hostal_Types_hostal">
+          <End Role="Types_hostal" Type="Self.Types_hostal" Multiplicity="0..1" />
+          <End Role="hostal" Type="Self.hostal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_hostal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hostal">
+              <PropertyRef Name="id_class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="al_hotalModelStoreContainer">
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checking" EntityType="Self.checking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="days_booking" EntityType="Self.days_booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hostal" EntityType="Self.hostal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hostal_state" EntityType="Self.hostal_state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nationalty" EntityType="Self.Nationalty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state_booking" EntityType="Self.state_booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_documant" EntityType="Self.type_documant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types_hostal" EntityType="Self.Types_hostal" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_booking_checking" Association="Self.FK_booking_checking">
+            <End Role="checking" EntitySet="checking" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_customers" Association="Self.FK_booking_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_hostal" Association="Self.FK_booking_hostal">
+            <End Role="hostal" EntitySet="hostal" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_state_booking" Association="Self.FK_booking_state_booking">
+            <End Role="state_booking" EntitySet="state_booking" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_gender" Association="Self.FK_customers_gender">
+            <End Role="gender" EntitySet="gender" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_Nationalty" Association="Self.FK_customers_Nationalty">
+            <End Role="Nationalty" EntitySet="Nationalty" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_type_documant" Association="Self.FK_customers_type_documant">
+            <End Role="type_documant" EntitySet="type_documant" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hostal_hostal_state" Association="Self.FK_hostal_hostal_state">
+            <End Role="hostal_state" EntitySet="hostal_state" />
+            <End Role="hostal" EntitySet="hostal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hostal_Types_hostal" Association="Self.FK_hostal_Types_hostal">
+            <End Role="Types_hostal" EntitySet="Types_hostal" />
+            <End Role="hostal" EntitySet="hostal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="al_hotalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ssn_cust" Type="Int32" Nullable="false" />
+          <Property Name="id_hostal" Type="Int32" Nullable="false" />
+          <Property Name="booking_date" Type="DateTime" Precision="3" />
+          <Property Name="check_in" Type="DateTime" Precision="3" />
+          <Property Name="check_out" Type="DateTime" Precision="3" />
+          <Property Name="state_booking" Type="Int32" />
+          <Property Name="cr_user" Type="Int32" />
+          <Property Name="is_checking" Type="Int32" />
+          <NavigationProperty Name="checking" Relationship="Self.FK_booking_checking" FromRole="booking" ToRole="checking" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_booking_customers" FromRole="booking" ToRole="customers" />
+          <NavigationProperty Name="hostal" Relationship="Self.FK_booking_hostal" FromRole="booking" ToRole="hostal" />
+          <NavigationProperty Name="state_booking1" Relationship="Self.FK_booking_state_booking" FromRole="booking" ToRole="state_booking" />
+        </EntityType>
+        <EntityType Name="checking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="check_rooms" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_checking" FromRole="checking" ToRole="booking" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="Int32" Nullable="false" />
+          <Property Name="type_doc" Type="Int32" />
+          <Property Name="nationalty" Type="Int32" />
+          <Property Name="serial_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cr_user" Type="Int32" />
+          <Property Name="cr_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_customers" FromRole="customers" ToRole="booking" />
+          <NavigationProperty Name="gender1" Relationship="Self.FK_customers_gender" FromRole="customers" ToRole="gender" />
+          <NavigationProperty Name="Nationalty1" Relationship="Self.FK_customers_Nationalty" FromRole="customers" ToRole="Nationalty" />
+          <NavigationProperty Name="type_documant" Relationship="Self.FK_customers_type_documant" FromRole="customers" ToRole="type_documant" />
+        </EntityType>
+        <EntityType Name="days_booking">
+          <Key>
+            <PropertyRef Name="id_booking" />
+          </Key>
+          <Property Name="id_booking" Type="Int32" Nullable="false" />
+          <Property Name="amount_days" Type="Int32" Nullable="false" />
+          <Property Name="spend_days" Type="Int32" Nullable="false" />
+          <Property Name="rest_days" Type="Int32" Nullable="false" />
+          <Property Name="upd_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="gend" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_gender" FromRole="gender" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="hostal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title_hostal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="beds" Type="Int32" />
+          <Property Name="for_how" Type="Int32" />
+          <Property Name="rooms" Type="Int32" />
+          <Property Name="id_class" Type="Int32" />
+          <Property Name="id_state" Type="Int32" />
+          <Property Name="cr_user" Type="Int32" />
+          <Property Name="cr_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_hostal" FromRole="hostal" ToRole="booking" />
+          <NavigationProperty Name="hostal_state" Relationship="Self.FK_hostal_hostal_state" FromRole="hostal" ToRole="hostal_state" />
+          <NavigationProperty Name="Types_hostal" Relationship="Self.FK_hostal_Types_hostal" FromRole="hostal" ToRole="Types_hostal" />
+        </EntityType>
+        <EntityType Name="hostal_state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="hostals" Relationship="Self.FK_hostal_hostal_state" FromRole="hostal_state" ToRole="hostal" />
+        </EntityType>
+        <EntityType Name="Nationalty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_of_nation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_Nationalty" FromRole="Nationalty" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bookings" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="payment1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="nets" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="state_booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state_booking1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_state_booking" FromRole="state_booking" ToRole="booking" />
+        </EntityType>
+        <EntityType Name="type_documant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_type_documant" FromRole="type_documant" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="Types_hostal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="types" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="cr_user" Type="Int32" Nullable="false" />
+          <Property Name="cr_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upd_user" Type="Int32" />
+          <Property Name="upd_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="hostals" Relationship="Self.FK_hostal_Types_hostal" FromRole="Types_hostal" ToRole="hostal" />
+        </EntityType>
+        <Association Name="FK_booking_checking">
+          <End Role="checking" Type="Self.checking" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="is_checking" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_customers">
+          <End Role="customers" Type="Self.customer" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="ssn_cust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_hostal">
+          <End Role="hostal" Type="Self.hostal" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hostal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="id_hostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_state_booking">
+          <End Role="state_booking" Type="Self.state_booking" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_booking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="state_booking" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_gender">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="customers" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_Nationalty">
+          <End Role="Nationalty" Type="Self.Nationalty" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationalty">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="nationalty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_type_documant">
+          <End Role="type_documant" Type="Self.type_documant" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_documant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="type_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hostal_hostal_state">
+          <End Role="hostal_state" Type="Self.hostal_state" Multiplicity="0..1" />
+          <End Role="hostal" Type="Self.hostal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hostal_state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hostal">
+              <PropertyRef Name="id_state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hostal_Types_hostal">
+          <End Role="Types_hostal" Type="Self.Types_hostal" Multiplicity="0..1" />
+          <End Role="hostal" Type="Self.hostal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_hostal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hostal">
+              <PropertyRef Name="id_class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="al_hotalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bookings" EntityType="Self.booking" />
+          <EntitySet Name="checkings" EntityType="Self.checking" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="days_booking" EntityType="Self.days_booking" />
+          <EntitySet Name="genders" EntityType="Self.gender" />
+          <EntitySet Name="hostals" EntityType="Self.hostal" />
+          <EntitySet Name="hostal_state" EntityType="Self.hostal_state" />
+          <EntitySet Name="Nationalties" EntityType="Self.Nationalty" />
+          <EntitySet Name="payments" EntityType="Self.payment" />
+          <EntitySet Name="state_booking" EntityType="Self.state_booking" />
+          <EntitySet Name="type_documant" EntityType="Self.type_documant" />
+          <EntitySet Name="Types_hostal" EntityType="Self.Types_hostal" />
+          <AssociationSet Name="FK_booking_checking" Association="Self.FK_booking_checking">
+            <End Role="checking" EntitySet="checkings" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_customers" Association="Self.FK_booking_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_hostal" Association="Self.FK_booking_hostal">
+            <End Role="hostal" EntitySet="hostals" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_state_booking" Association="Self.FK_booking_state_booking">
+            <End Role="state_booking" EntitySet="state_booking" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_gender" Association="Self.FK_customers_gender">
+            <End Role="gender" EntitySet="genders" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_Nationalty" Association="Self.FK_customers_Nationalty">
+            <End Role="Nationalty" EntitySet="Nationalties" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_type_documant" Association="Self.FK_customers_type_documant">
+            <End Role="type_documant" EntitySet="type_documant" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hostal_hostal_state" Association="Self.FK_hostal_hostal_state">
+            <End Role="hostal_state" EntitySet="hostal_state" />
+            <End Role="hostal" EntitySet="hostals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hostal_Types_hostal" Association="Self.FK_hostal_Types_hostal">
+            <End Role="Types_hostal" EntitySet="Types_hostal" />
+            <End Role="hostal" EntitySet="hostals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="al_hotalModelStoreContainer" CdmEntityContainer="al_hotalEntities">
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="al_hotalModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ssn_cust" ColumnName="ssn_cust" />
+                <ScalarProperty Name="id_hostal" ColumnName="id_hostal" />
+                <ScalarProperty Name="booking_date" ColumnName="booking_date" />
+                <ScalarProperty Name="check_in" ColumnName="check_in" />
+                <ScalarProperty Name="check_out" ColumnName="check_out" />
+                <ScalarProperty Name="state_booking" ColumnName="state_booking" />
+                <ScalarProperty Name="cr_user" ColumnName="cr_user" />
+                <ScalarProperty Name="is_checking" ColumnName="is_checking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkings">
+            <EntityTypeMapping TypeName="al_hotalModel.checking">
+              <MappingFragment StoreEntitySet="checking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="check_rooms" ColumnName="check_rooms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="al_hotalModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="type_doc" ColumnName="type_doc" />
+                <ScalarProperty Name="nationalty" ColumnName="nationalty" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="cr_user" ColumnName="cr_user" />
+                <ScalarProperty Name="cr_date" ColumnName="cr_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="days_booking">
+            <EntityTypeMapping TypeName="al_hotalModel.days_booking">
+              <MappingFragment StoreEntitySet="days_booking">
+                <ScalarProperty Name="id_booking" ColumnName="id_booking" />
+                <ScalarProperty Name="amount_days" ColumnName="amount_days" />
+                <ScalarProperty Name="spend_days" ColumnName="spend_days" />
+                <ScalarProperty Name="rest_days" ColumnName="rest_days" />
+                <ScalarProperty Name="upd_date" ColumnName="upd_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genders">
+            <EntityTypeMapping TypeName="al_hotalModel.gender">
+              <MappingFragment StoreEntitySet="gender">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gend" ColumnName="gend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hostals">
+            <EntityTypeMapping TypeName="al_hotalModel.hostal">
+              <MappingFragment StoreEntitySet="hostal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title_hostal" ColumnName="title_hostal" />
+                <ScalarProperty Name="beds" ColumnName="beds" />
+                <ScalarProperty Name="for_how" ColumnName="for_how" />
+                <ScalarProperty Name="rooms" ColumnName="rooms" />
+                <ScalarProperty Name="id_class" ColumnName="id_class" />
+                <ScalarProperty Name="id_state" ColumnName="id_state" />
+                <ScalarProperty Name="cr_user" ColumnName="cr_user" />
+                <ScalarProperty Name="cr_date" ColumnName="cr_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hostal_state">
+            <EntityTypeMapping TypeName="al_hotalModel.hostal_state">
+              <MappingFragment StoreEntitySet="hostal_state">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalties">
+            <EntityTypeMapping TypeName="al_hotalModel.Nationalty">
+              <MappingFragment StoreEntitySet="Nationalty">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_of_nation" ColumnName="name_of_nation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="al_hotalModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_bookings" ColumnName="id_bookings" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="payment1" ColumnName="payment" />
+                <ScalarProperty Name="nets" ColumnName="nets" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_booking">
+            <EntityTypeMapping TypeName="al_hotalModel.state_booking">
+              <MappingFragment StoreEntitySet="state_booking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="state_booking1" ColumnName="state_booking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_documant">
+            <EntityTypeMapping TypeName="al_hotalModel.type_documant">
+              <MappingFragment StoreEntitySet="type_documant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="doc" ColumnName="doc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types_hostal">
+            <EntityTypeMapping TypeName="al_hotalModel.Types_hostal">
+              <MappingFragment StoreEntitySet="Types_hostal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="types" ColumnName="types" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cr_user" ColumnName="cr_user" />
+                <ScalarProperty Name="cr_date" ColumnName="cr_date" />
+                <ScalarProperty Name="upd_user" ColumnName="upd_user" />
+                <ScalarProperty Name="upd_date" ColumnName="upd_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

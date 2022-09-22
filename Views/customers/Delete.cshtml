@@ -1,0 +1,88 @@
+﻿@model MyAppOfHotal.Models.customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serial_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serial_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender1.gend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender1.gend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalty1.name_of_nation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationalty1.name_of_nation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type_documant.doc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type_documant.doc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

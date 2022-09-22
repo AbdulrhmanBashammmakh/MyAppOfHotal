@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyAppOfHotal.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div style="direction: rtl;">
+    <h2>قائمة جميع النزلاء </h2>
+    <p>
+        @Html.ActionLink("أضافة نزيل", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                <p>اسم النزيل</p>
+            </th>
+            <th>
+                <p>رقم الهاتف</p>
+            </th>
+            <th>
+                <p>نوع وثيقة الهوية</p>
+            </th>
+            <th>
+                <p>الرقم التسلسلي</p>
+            </th>
+
+            <th>
+                <p>الجنس</p>
+            </th>
+            <th>
+                <p>البلد</p>
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type_documant.doc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serial_number)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender1.gend)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationalty1.name_of_nation)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

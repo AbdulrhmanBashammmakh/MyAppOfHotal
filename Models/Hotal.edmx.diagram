@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4991806f149f4a65b7b7495a098ba9be" Name="Diagram1">
+        <EntityTypeShape EntityType="al_hotalModel.booking" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.checking" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.customer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.days_booking" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.gender" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.hostal" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.hostal_state" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.Nationalty" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.payment" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.state_booking" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.type_documant" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="al_hotalModel.Types_hostal" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="al_hotalModel.FK_booking_checking" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_booking_customers" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_booking_hostal" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_booking_state_booking" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_customers_gender" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_customers_Nationalty" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_customers_type_documant" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_hostal_hostal_state" ManuallyRouted="false" />
+        <AssociationConnector Association="al_hotalModel.FK_hostal_Types_hostal" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,82 @@
+﻿@model MyAppOfHotal.Models.hostal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>hostal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title_hostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title_hostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.for_how)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.for_how)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hostal_state.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hostal_state.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Types_hostal.types)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Types_hostal.types)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyAppOfHotal.Models.booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hostal.title_hostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.booking_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.check_in)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.check_out)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.checking.check_rooms)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.state_booking1.state_booking1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hostal.title_hostal)  /  @Html.DisplayFor(modelItem => item.hostal.rooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.booking_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.check_in)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.check_out)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.checking.check_rooms)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.state_booking1.state_booking1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
